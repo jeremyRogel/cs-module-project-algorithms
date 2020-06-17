@@ -8,7 +8,22 @@ Item = namedtuple('Item', ['index', 'size', 'value'])
 def knapsack_solver(items, capacity):
     # Your code here
 
-    pass
+  # calculate efficiencies 
+  for i in items:
+    i.efficiency = i.value/i.weight
+  # sort items by ifficiency
+  items.sort(key=lambda x: x.efficiency, reverse=True)
+  # put items in knapsack until full
+  sack = []
+  weight = 0
+  for i in items:
+    weight += i.weight
+    if weight > 50:
+      return sack
+    else:
+      sack.append(i)
+
+  return sack
 
 
 if __name__ == '__main__':
